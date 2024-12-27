@@ -4,7 +4,11 @@ body{
     min-height: 100vh;
     width: 100%;
     display: grid;
+    /* color: white; */
     grid-template-columns: 350px 1fr;
+    background: url("./Img/snowy-tree.jpg") center / cover;
+    background-repeat: no-repeat;
+    /* backdrop-filter: blur(10px); */
 }
 
 .sidebar{
@@ -71,6 +75,8 @@ h1{
 
 .settings > i{
     cursor: pointer;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
 }
 
 .box{
@@ -217,7 +223,22 @@ input:checked + .slider:before {
 }
 
 .right{
+    /* width: 100%; */
     margin-right: 5rem;
+    position: relative;
+}
+
+img{
+    object-fit: cover;
+}
+
+.right div img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -20px;
+    z-index: -1;
+    margin-bottom: 0;
 }
 
 .right h2{
