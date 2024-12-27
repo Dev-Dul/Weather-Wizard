@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Wizard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./Assets/css/all.css">
+</head>
+<body>
+    <div class="sidebar">
+       <div class="main-text">
+         <h1>Weather <br> Wizard</h1>
+         <p>Weather Your Way.</p>
+       </div>
+       <div class="dev">
+         <h2>Made with ❤️ by DevAbdul.</h2>
+         <p>&copy 2024, All rights reserved.</p>
+       </div>
+    </div>
+    <div class="largebar">
+        <div class="settings">
+            <i>SET</i>
+            <div class="box">
+                <div class="fahrenheit" style="--i: 1">
+                    <p>C</p>
+                    <label class="switch">
+                        <input type="checkbox" name="rem" id="rem" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <p>F</p>
+                </div>
+                <div class="dark" style="--i: 2">
+                    <p>Darkmode</p>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <input type="search" name="search" id="search">
+            <h2 id="name">Kaduna.</h2>
+        </div>
+        <div class="main">
+            <div class="left">
+                <p class="subtitle">Weather Forecast</p>
+                <h2 class="deg"><span id="temp">0</span><span>°C</span></h2>
+                <p class="feel">Feels like: <span id="feel">0</span>°C<span></span></p>
+                <p class="date">Dec 26th, 2024. <span class="time">9:16 PM.</span></p>
+            </div>
+            <div class="right">
+                <div>
+                    <img src="">
+                    <h2 class="weather">Partly Cloudy</h2>
+                </div>
+            </div>
+        </div>
+        <div class="brief">
+            <p class="description">Description: <span id="desc"></span></p>
+            <p class="brf">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat voluptatem deserunt natus consectetur distinctio. Pariatur iusto veritatis dicta incidunt ut modi quibusdam rem vel, odit assumenda est sint consequatur a maxime, asperiores quos, animi molestias magnam veniam. Libero quod delectus rem voluptas iure blanditiis beatae, eum, nostrum maiores, veritatis vitae?</p>
+        </div>
+        <div class="deets">
+            <p>Pressure: <span id="pressure"></span></p>
+            <p>Humidity: <span id="humid"></span></p>
+            <p>Wind Gust: <span id="gust"></span></p>
+            <p>Wind Speed: <span id="wspeed"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
