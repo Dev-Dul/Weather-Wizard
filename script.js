@@ -2,6 +2,7 @@ const body = document.body;
 const cityName = document.getElementById("name");
 const temp = document.querySelector("#temp");
 const feel = document.querySelector("#feel");
+const cels = document.querySelectorAll(".celcius");
 const condition = document.querySelector(".weather");
 const desc = document.getElementById("desc");
 const pressure = document.getElementById("pressure");
@@ -17,6 +18,7 @@ const loader = document.querySelector(".fetch");
 const close = document.querySelector(".close i");
 const dt = document.querySelector("span.dt");
 const time = document.querySelector(".time");
+const check = document.querySelector("input[type='checkbox']");
 
 
 
@@ -95,6 +97,16 @@ function updateUI(text){
     }
 }
 
+function convertValues(){
+    let tempVal = Number(temp.textContent) * 1.8 + 32;
+    let feelVal = Number(feel.textContent) * 1.8 + 32;
+    temp.textContent = tempVal.toString();
+    feel.textContent = feelVal.toString();
+    cels.forEach(cel => {
+        cel.textContent = "°F";
+    })
+}
+
 search.addEventListener("search", () => {
     getWeather(search.value);
 });
@@ -116,4 +128,10 @@ settings.addEventListener("click", () => {
 
 close.addEventListener("click", () => {
     err.classList.remove("active");
+});
+
+check.addEventListener("change", (event) => {
+    if(event.target.checked){
+        convertValues();
+    }
 });
