@@ -1,3 +1,4 @@
+const body = document.body;
 const cityName = document.getElementById("name");
 const temp = document.querySelector("#temp");
 const feel = document.querySelector("#feel");
@@ -11,20 +12,36 @@ const search = document.querySelector("input[type='search']");
 const settings = document.querySelector(".settings i");
 const box = document.querySelector(".box");
 const boxItems = document.querySelectorAll(".box > div");
+const err = document.querySelector(".error");
+const loader = document.querySelector(".fetch");
+const close = document.querySelector(".close i");
 
 async function getWeather(keyword){
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${keyword}/today?unitGroup=metric&key=4YAG9WWBRSJKSX9AABJ9CE4MH&contentType=json`);
-    if(response.ok){
-        const data = await response.json();
-        updateInfo(data);
-        console.log(data);
-        console.log(data.days[0].temp);
-        console.log(data.days[0].conditions);
-        console.log(data.days[0].feelslike);
-        console.log(data.days[0].description);
-        console.log(data.days[0].humidity);
-        console.log(data.days[0].windgust);
-        console.log(data.days[0].windspeed);
+    if(document.querySelectorAll(".error.active").length !== 0){
+        err.classList.remove("active");
+    }
+
+    loader.classList.add("active");
+    try{
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${keyword}/today?unitGroup=metric&key=4YAG9WWBRSJKSX9AABJ9CE4MH&contentType=json`);
+        if(response.ok){
+            const data = await response.json();
+            updateInfo(data);
+            console.log(data);
+            console.log(data.days[0].temp);
+            console.log(data.days[0].conditions);
+            console.log(data.days[0].feelslike);
+            console.log(data.days[0].description);
+            console.log(data.days[0].humidity);
+            console.log(data.days[0].windgust);
+            console.log(data.days[0].windspeed);
+        }
+    }catch(error){
+        if (document.querySelectorAll(".fetch.active").length !== 0) {
+          loader.classList.remove("active");
+        }
+
+        err.classList.add("active");
     }
 }
 
@@ -38,6 +55,28 @@ function updateInfo(data){
     humidity.textContent = data.days[0].humidity;
     gust.textContent = data.days[0].windgust;
     wspeed.textContent = data.days[0].windspeed;
+}
+
+function updateUI(text){
+    let index = Math.floor(Math.random() * 4);
+    let imgArr = ["./Img/car-mountain.jpg", "./Img/mountain-two.jpg", "./Img/snowy-tree.jpg"];
+    if(text.toLowerCase().includes('cloud')){
+        body.style.backgroundImage = "url('./Img/cloud-mountain.jpg')";
+    }else if(text.toLowerCase().includes('fog')){
+        body.style.backgroundImage = "url('./Img/foggy-road.jpg')";
+    }else if(text.toLowerCase().includes('sun')){
+        body.style.backgroundImage = "url('./Img/sunny-barn.jpg')";
+    }else if(text.toLowerCase().includes('wind')){
+        body.style.backgroundImage = "url('./Img/wind-turbine.jpg')";
+    }else if(text.toLowerCase().includes('smoke')){
+        body.style.backgroundImage = "url('./Img/smoky-mountain.jpg')";
+    }else if(text.toLowerCase().includes('clear')){
+        body.style.backgroundImage = "url('./Img/hikers.jpg')";
+    }else if(text.toLowerCase().includes('rain')){
+        body.style.backgroundImage = "url('./Img/dark-road.jpg')";
+    }else{
+        body.style.backgroundImage = `url(${imgArr[index]})`;
+    }
 }
 
 search.addEventListener("search", () => {
@@ -57,4 +96,8 @@ settings.addEventListener("click", () => {
             boxI.classList.add("active");
         });
     }
-})
+});
+
+close.addEventListener("click", () => {
+    err.classList.remove("active");
+});
