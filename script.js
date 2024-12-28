@@ -15,6 +15,19 @@ const boxItems = document.querySelectorAll(".box > div");
 const err = document.querySelector(".error");
 const loader = document.querySelector(".fetch");
 const close = document.querySelector(".close i");
+const dt = document.querySelector("span.dt");
+const time = document.querySelector(".time");
+
+
+
+window.addEventListener("load", () => {
+    let d = new Date();
+    dt.textContent = d.toDateString();
+    time.textContent = d.toLocaleTimeString();
+    setInterval(() => {
+        time.textContent = new Date().toLocaleTimeString();
+    }, 1000);
+});
 
 async function getWeather(keyword){
     if(document.querySelectorAll(".error.active").length !== 0){
@@ -27,6 +40,7 @@ async function getWeather(keyword){
         if(response.ok){
             const data = await response.json();
             updateInfo(data);
+            loader.classList.remove("active");
             console.log(data);
             console.log(data.days[0].temp);
             console.log(data.days[0].conditions);
@@ -35,12 +49,13 @@ async function getWeather(keyword){
             console.log(data.days[0].humidity);
             console.log(data.days[0].windgust);
             console.log(data.days[0].windspeed);
+        }else{
+            throw new Error("error");
         }
     }catch(error){
         if (document.querySelectorAll(".fetch.active").length !== 0) {
           loader.classList.remove("active");
         }
-
         err.classList.add("active");
     }
 }
@@ -49,6 +64,7 @@ function updateInfo(data){
     cityName.textContent = data.address;
     temp.textContent = data.days[0].temp;
     feel.textContent = data.days[0].feelslike;
+    condition.classList.add("active");
     condition.textContent = data.days[0].conditions;
     desc.textContent = data.days[0].description;
     pressure.textContent = data.days[0].pressure;
