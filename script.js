@@ -43,14 +43,7 @@ async function getWeather(keyword){
             const data = await response.json();
             updateInfo(data);
             loader.classList.remove("active");
-            console.log(data);
-            console.log(data.days[0].temp);
-            console.log(data.days[0].conditions);
-            console.log(data.days[0].feelslike);
-            console.log(data.days[0].description);
-            console.log(data.days[0].humidity);
-            console.log(data.days[0].windgust);
-            console.log(data.days[0].windspeed);
+            updateUI(data.days[0].conditions);
         }else{
             throw new Error("error");
         }
@@ -78,7 +71,10 @@ function updateInfo(data){
 function updateUI(text){
     let index = Math.floor(Math.random() * 4);
     let imgArr = ["./Img/car-mountain.jpg", "./Img/mountain-two.jpg", "./Img/snowy-tree.jpg"];
-    if(text.toLowerCase().includes('cloud')){
+    if(text.toLowerCase().includes('rain') && text.toLowerCase().includes("cloud")){
+        body.style.backgroundImage = "url('./Img/dark-road.jpg')";
+        body.style.color = "linen";
+    }else if(text.toLowerCase().includes('cloud')){
         body.style.backgroundImage = "url('./Img/cloud-mountain.jpg')";
     }else if(text.toLowerCase().includes('fog')){
         body.style.backgroundImage = "url('./Img/foggy-road.jpg')";
@@ -97,14 +93,38 @@ function updateUI(text){
     }
 }
 
-function convertValues(){
-    let tempVal = Number(temp.textContent) * 1.8 + 32;
-    let feelVal = Number(feel.textContent) * 1.8 + 32;
-    temp.textContent = tempVal.toString();
-    feel.textContent = feelVal.toString();
-    cels.forEach(cel => {
-        cel.textContent = "°F";
-    })
+function convertValues(deg = "celcius"){
+    if(deg === "Fahrenheit"){
+        let tempVal = Number(temp.textContent) * 1.8 + 32;
+        let feelVal = Number(feel.textContent) * 1.8 + 32;
+        temp.textContent = tempVal.toFixed(2);
+        feel.textContent = feelVal.toFixed(2);
+        cels.forEach((cel) => {
+          cel.textContent = "°F";
+        });
+    }else{
+        let check = false;
+        cels.forEach((cel) => {
+            if(cel.textContent.includes("C")){
+                check = true;
+            }else{
+                check = false;
+            }
+        });
+        if(check){
+            temp.textContent = temp.textContent;
+            feel.textContent = feel.textContent;
+        }else{
+            let tempCel = ((Number(temp.textContent) - 32) / 1.8);
+            let feelCel = ((Number(feel.textContent) - 32) / 1.8);
+            temp.textContent = tempCel.toFixed(2);
+            feel.textContent = feelCel.toFixed(2);
+            cels.forEach((cel) => {
+              cel.textContent = "°C";
+            });
+        }
+        
+    }
 }
 
 search.addEventListener("search", () => {
@@ -132,6 +152,8 @@ close.addEventListener("click", () => {
 
 check.addEventListener("change", (event) => {
     if(event.target.checked){
+        convertValues("Fahrenheit");
+    }else{
         convertValues();
     }
 });

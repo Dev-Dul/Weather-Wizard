@@ -20,11 +20,13 @@ body{
     width: 100%;
     display: grid;
     color: #0d0d0d;
+    /* color: white; */
     grid-template-columns: 350px 1fr;
     background: url("./Img/snowy-tree.jpg") center / cover;
     background-repeat: no-repeat;
     overflow: hidden;
     font-family: "chafuer";
+    transition: all 2s ease;
     backdrop-filter: blur(10px);
 }
 
@@ -261,6 +263,7 @@ input:checked + .slider:before {
 .feel{
     margin: 0;
     font-size: 1.2rem;
+    transition: all 1s ease;
 }
 
 .deg{
@@ -329,11 +332,16 @@ img{
     padding: 2rem;
 }
 
+.description{
+    margin-left: 3rem;
+    /* color: white; */
+}
+
 .deets{
     width: 100%;
     display: flex;
     align-items: center;
-    margin-top: -1rem;
+    margin-top: 1rem;
     font-family: "refile";
     justify-content: space-evenly;
 }
