@@ -3,4 +3,4 @@ Weather Wizard is a weather app that consumes the Visual Crossing Weather API to
 Searching for a city that has a sunny weather will automatically change the background to one with a sunny picture once the API data is received.
 
 ## Usage
-I recommend visting the website on a desktop / laptop, as the site isn't mobile responsive yet.
+I recommend visiting the website on a desktop / laptop, as the site isn't mobile responsive yet.
