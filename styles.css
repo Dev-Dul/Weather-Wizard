@@ -20,9 +20,9 @@ body{
     width: 100%;
     display: grid;
     color: #0d0d0d;
-    /* color: white; */
+    color: white;
     grid-template-columns: 350px 1fr;
-    background: url("./Img/snowy-tree.jpg") center / cover;
+    background: url("./Img/dark-road.jpg") center / cover;
     background-repeat: no-repeat;
     overflow: hidden;
     font-family: "chafuer";
@@ -46,7 +46,7 @@ body{
     right: 0;
     height: 80%;
     width: 2px;
-    background: #000;
+    background: var(--color, white);
 }
 
 .main-text{
@@ -88,6 +88,7 @@ h1{
     position: absolute;
     width: 100%;
     height: 100%;
+    color: #0d0d0d;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(20px);
     display: flex;
@@ -238,7 +239,7 @@ input:checked + .slider:before {
     outline: none;
     font-family: "chafuer";
     border-radius: 10px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
 }

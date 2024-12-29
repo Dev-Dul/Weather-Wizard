@@ -19,6 +19,7 @@ const close = document.querySelector(".close i");
 const dt = document.querySelector("span.dt");
 const time = document.querySelector(".time");
 const check = document.querySelector("input[type='checkbox']");
+const sidebar = document.querySelector(".sidebar");
 
 
 
@@ -74,21 +75,48 @@ function updateUI(text){
     if(text.toLowerCase().includes('rain') && text.toLowerCase().includes("cloud")){
         body.style.backgroundImage = "url('./Img/dark-road.jpg')";
         body.style.color = "linen";
+        sidebar.style.setProperty('--color', "white");
     }else if(text.toLowerCase().includes('cloud')){
         body.style.backgroundImage = "url('./Img/cloud-mountain.jpg')";
+        body.style.color = "#0d0d0d";
+        sidebar.style.setProperty('--color', "#0d0d0d");
+        search.style.border = '2px solid #0d0d0d';
     }else if(text.toLowerCase().includes('fog')){
         body.style.backgroundImage = "url('./Img/foggy-road.jpg')";
+        body.style.color = "#0d0d0d";
+        sidebar.style.setProperty('--color', "#0d0d0d");
+        search.style.border = '2px solid #0d0d0d';
     }else if(text.toLowerCase().includes('sun')){
         body.style.backgroundImage = "url('./Img/sunny-barn.jpg')";
+        body.style.color = "#0d0d0d";
+        sidebar.style.setProperty("--color", "#0d0d0d");
+        search.style.border = '2px solid #0d0d0d';
     }else if(text.toLowerCase().includes('wind')){
         body.style.backgroundImage = "url('./Img/wind-turbine.jpg')";
+        body.style.color = "#0d0d0d";
+        sidebar.style.setProperty('--color', "#0d0d0d");
+        search.style.border = '2px solid #0d0d0d';
     }else if(text.toLowerCase().includes('smoke')){
         body.style.backgroundImage = "url('./Img/smoky-mountain.jpg')";
+        body.style.color = "#0d0d0d";
+        sidebar.style.setProperty('--color', "#0d0d0d");
+        search.style.border = '2px solid #0d0d0d';
     }else if(text.toLowerCase().includes('clear')){
         body.style.backgroundImage = "url('./Img/hikers.jpg')";
+        body.style.color = "#0d0d0d";
+        sidebar.style.setProperty('--color', "#0d0d0d");
     }else if(text.toLowerCase().includes('rain')){
         body.style.backgroundImage = "url('./Img/dark-road.jpg')";
+        body.style.color = "linen";
+        sidebar.style.setProperty("--color", "white");
     }else{
+        if(index === 0){
+            body.style.color = "linen";
+            sidebar.style.setProperty("--color", "white");
+        }else{
+            body.style.color = "#0d0d0d";
+            sidebar.style.setProperty("--color", "#0d0d0d");
+        }
         body.style.backgroundImage = `url(${imgArr[index]})`;
     }
 }
